@@ -1,7 +1,5 @@
 package com.thr.mobilemedical;
 
-import java.util.List;
-
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,15 +10,19 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.squareup.okhttp.Request;
 import com.thr.adapter.BloodAdapter;
 import com.thr.bean.Blood;
 import com.thr.constant.LoginInfo;
 import com.thr.constant.Method;
 import com.thr.constant.SettingInfo;
 import com.thr.utils.GsonUtil;
-import com.thr.utils.HttpGetUtil;
 import com.thr.utils.L;
 import com.thr.view.MyProgressDialog;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.List;
 
 /**
  * @description 护理录入-血糖
@@ -54,21 +56,31 @@ public class BloodsugerFragment extends Fragment {
 	/**
 	 * 读取血糖的数据
 	 * 
-	 * @param string
+	 * @param officeId
 	 */
 	private void loadBloodsugerData(String officeId) {
 		String url = SettingInfo.NSIS
 				+ Method.QUERY_NURSE_ITEM_MOBILE_BY_BLOODSUGAR + "?officeid="
 				+ officeId;
-		HttpGetUtil httpGet = new HttpGetUtil(getActivity()) {
-			@Override
-			public void success(String json) {
-				L.i("返回值------" + json);
-				mBloodsugerList = GsonUtil.getBloodData(json);
-				setBloodsugerData();
-			}
-		};
-		httpGet.doGet(url, mDialog, getActivity(), "血糖数据");
+
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("返回值------" + response);
+						mBloodsugerList = GsonUtil.getBloodData(response);
+						setBloodsugerData();
+					}
+				});
+
 	}
 
 	protected void setBloodsugerData() {

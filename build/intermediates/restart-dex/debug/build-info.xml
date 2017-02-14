@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86"
-    api-level="19"
-    density="xxhdpi"
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="23"
+    density="xhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="1632893715455984"
+    timestamp="2505883178802266"
     token="-8168269700803248548"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="341" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="18" />
     <task
         name="verifier"
-        duration="0" />
+        duration="4" />
 
     <artifact
         location="E:\AndroidProject\MyApplication\MobileMedical2.0\build\outputs\apk\MobileMedical2.0-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="1632893715455984"
+        timestamp="2505883178802266"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="E:\AndroidProject\MyApplication\MobileMedical2.0\build\outputs\apk\MobileMedical2.0-debug.apk"

@@ -17,6 +17,7 @@ ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidMani
 		ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidManifest.xml:7:5-9:41
+MERGED from [com.zhy:okhttputils:2.0.0] E:\AndroidProject\MyApplication\MobileMedical2.0\build\intermediates\exploded-aar\com.zhy\okhttputils\2.0.0\AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion
 		ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidManifest.xml:9:9-38
 		INJECTED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidManifest.xml
@@ -31,6 +32,7 @@ ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidMani
 		ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidManifest.xml:11:22-65
 uses-permission#android.permission.INTERNET
 ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidManifest.xml:12:5-67
+MERGED from [com.zhy:okhttputils:2.0.0] E:\AndroidProject\MyApplication\MobileMedical2.0\build\intermediates\exploded-aar\com.zhy\okhttputils\2.0.0\AndroidManifest.xml:11:5-67
 	android:name
 		ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidManifest.xml:12:22-64
 uses-permission#android.permission.READ_PHONE_STATE
@@ -39,6 +41,7 @@ ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidMani
 		ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidManifest.xml:14:22-72
 application
 ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidManifest.xml:16:5-68:19
+MERGED from [com.zhy:okhttputils:2.0.0] E:\AndroidProject\MyApplication\MobileMedical2.0\build\intermediates\exploded-aar\com.zhy\okhttputils\2.0.0\AndroidManifest.xml:14:5-17:19
 	android:screenOrientation
 		ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidManifest.xml:20:9-45
 	android:label
@@ -127,3 +130,7 @@ activity#com.thr.mobilemedical.DropdetailActivity
 ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidManifest.xml:66:9-67:20
 	android:name
 		ADDED from E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\AndroidManifest.xml:66:19-74
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [com.zhy:okhttputils:2.0.0] E:\AndroidProject\MyApplication\MobileMedical2.0\build\intermediates\exploded-aar\com.zhy\okhttputils\2.0.0\AndroidManifest.xml:12:5-81
+	android:name
+		ADDED from [com.zhy:okhttputils:2.0.0] E:\AndroidProject\MyApplication\MobileMedical2.0\build\intermediates\exploded-aar\com.zhy\okhttputils\2.0.0\AndroidManifest.xml:12:22-78

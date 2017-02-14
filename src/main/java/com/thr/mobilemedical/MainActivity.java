@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.squareup.okhttp.Request;
 import com.thr.adapter.PatientAdapter;
 import com.thr.bean.NewOrder;
 import com.thr.bean.Patient;
@@ -44,6 +45,8 @@ import com.thr.view.PatientPopupWindow;
 import com.thr.view.TitleBar;
 import com.thr.view.TitleBar.OnLeftClickListener;
 import com.thr.view.TitleBar.OnRightClickListener;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 /**
  * @description 主界面
@@ -212,8 +215,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	/**
 	 * 弹出右侧病人列表
-	 * 
-	 * @param mPopWindow
+	 *
 	 */
 	private void showPopupWindow() {
 		mAdapter.setDatas(mPatientShow);
@@ -329,18 +331,26 @@ public class MainActivity extends Activity implements OnClickListener {
 	private void loadPatientList(String officeId) {
 		String url = SettingInfo.SERVICE + Method.PATIENT_INFO_BY_OFFICEID
 				+ "?OfficeId=" + officeId;
-		HttpGetUtil httpGet = new HttpGetUtil(this) {
 
-			@Override
-			public void success(String json) {
-				L.i("病患信息------" + json);
-				mPatientList = GsonUtil.getPatientInfoList(json);
-				countPatientNumber();
-				setPatientNumber();
-				setPatientListView();
-			}
-		};
-		httpGet.doGet(url, mDialog, this, "患者信息");
+
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						mPatientList = GsonUtil.getPatientInfoList(response);
+						countPatientNumber();
+						setPatientNumber();
+						setPatientListView();
+					}
+				});
 	}
 
 	/**
@@ -349,57 +359,85 @@ public class MainActivity extends Activity implements OnClickListener {
 	private void loadNursingRecord(String officeId) {
 		String url = SettingInfo.SERVICE + Method.GET_NURSING_RECORD
 				+ "?OfficeId=" + officeId;
-		HttpGetUtil httpGet = new HttpGetUtil(this) {
 
-			@Override
-			public void success(String json) {
-				L.i("护理记录单------" + json);
-				LoginInfo.nursingrecordList = GsonUtil
-						.getNursingRecordList(json);
-			}
-		};
-		httpGet.doGet(url, mDialog, this, "护理记录单");
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("护理记录单------" + response);
+						LoginInfo.nursingrecordList = GsonUtil
+								.getNursingRecordList(response);
+					}
+				});
+
+
 	}
 
 	/**
 	 * 读取异常体温病患
 	 * 
-	 * @param oFFICE_ID
+	 * @param officeId
 	 */
 	private void loadUnusualTemper(String officeId) {
 		String url = SettingInfo.SERVICE
 				+ Method.GET_NURSING_LIST_YCTW_BY_OFFICEID + "?OfficeId="
 				+ officeId;
-		HttpGetUtil httpGet = new HttpGetUtil(this) {
 
-			@Override
-			public void success(String json) {
-				L.i("异常体温------" + json);
-				mUnusualList = GsonUtil.getUnusualTemper(json);
-				addTemperToInfoceter(mUnusualList);
-			}
-		};
-		httpGet.doGet(url, mDialog, this, "异常体温");
+
+
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("异常体温------" + response);
+						mUnusualList = GsonUtil.getUnusualTemper(response);
+						addTemperToInfoceter(mUnusualList);
+					}
+				});
 	}
 
 	/**
 	 * 读取60分钟内新开的医嘱
 	 * 
-	 * @param oFFICE_ID
+	 * @param officeId
 	 */
 	private void loadNewOrder(String officeId, int minute) {
 		String url = SettingInfo.NSIS + Method.QUERY_MEDORDER_MOBILE_BY_OFFICE
 				+ "?OfficeId=" + officeId + "&minute=" + minute;
-		HttpGetUtil httpGet = new HttpGetUtil(this) {
 
-			@Override
-			public void success(String json) {
-				L.i("新开医嘱------" + json);
-				mNewOrderList = GsonUtil.getNewOrderData(json);
-				addOrderToInfoceter(mNewOrderList);
-			}
-		};
-		httpGet.doGet(url, mDialog, this, "新开医嘱");
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("新开医嘱------" + response);
+						mNewOrderList = GsonUtil.getNewOrderData(response);
+						addOrderToInfoceter(mNewOrderList);
+					}
+				});
 
 	}
 

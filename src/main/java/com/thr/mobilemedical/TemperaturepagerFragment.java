@@ -1,7 +1,5 @@
 package com.thr.mobilemedical;
 
-import java.util.ArrayList;
-import java.util.List;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -11,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.squareup.okhttp.Request;
 import com.thr.adapter.TemperatureAdapter;
 import com.thr.bean.NursingrecordFiled;
 import com.thr.bean.Temperature;
@@ -18,11 +18,13 @@ import com.thr.constant.LoginInfo;
 import com.thr.constant.Method;
 import com.thr.constant.SettingInfo;
 import com.thr.utils.GsonUtil;
-import com.thr.utils.HttpGetUtil;
-import com.thr.utils.HttpUtils;
-import com.thr.utils.HttpUtils.CallBack;
 import com.thr.utils.L;
 import com.thr.view.MyProgressDialog;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @description 护理录入-体温单
@@ -80,16 +82,25 @@ public class TemperaturepagerFragment extends Fragment {
 	private void loadPatientTemperature(String officeId) {
 		String url = SettingInfo.SERVICE + Method.GET_PATIENT_TEMPERATURE
 				+ "?OfficeID=" + officeId;
-		HttpGetUtil httpGet = new HttpGetUtil(getActivity()) {
 
-			@Override
-			public void success(String json) {
-				L.i("病患体温单------" + json);
-				mTemperatureList = GsonUtil.getPatientTemperature(json);
-				setOnListView();
-			}
-		};
-		httpGet.doGet(url, mDialog, getActivity(), "病患体温单");
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("病患体温单------" + response);
+						mTemperatureList = GsonUtil.getPatientTemperature(response);
+						setOnListView();
+					}
+				});
+
 	}
 
 	/**
@@ -101,17 +112,27 @@ public class TemperaturepagerFragment extends Fragment {
 	private void loadNursingRecordFiled(String nursignId) {
 		String url = SettingInfo.SERVICE + Method.GET_NURSING_FILED
 				+ "?NursingId=" + nursignId;
-		HttpGetUtil httpGet = new HttpGetUtil(getActivity()) {
 
-			@Override
-			public void success(String json) {
-				L.i("护理记录单字段------" + json);
-				mFileds = GsonUtil.getNursingStructureList(json);
-				getTimePoint();
-				setTimePotin();
-			}
-		};
-		httpGet.doGet(url, mDialog, getActivity(), "护理记录单");
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("护理记录单字段------" + response);
+						mFileds = GsonUtil.getNursingStructureList(response);
+						getTimePoint();
+						setTimePotin();
+					}
+				});
+
+
 	}
 
 	/**
@@ -195,15 +216,26 @@ public class TemperaturepagerFragment extends Fragment {
 	private void updateTemperatureForm() {
 		String url = SettingInfo.SERVICE + Method.GET_PATIENT_TEMPERATURE
 				+ "?OfficeID=" + LoginInfo.OFFICE_ID;
-		HttpUtils.doGetAsyn(getActivity(), url, new CallBack() {
 
-			@Override
-			public void onRequestComplete(String json) {
-				L.i("护理记录单单条记录------" + json);
-				mTemperatureList = GsonUtil.getPatientTemperature(json);
-				handler.sendEmptyMessage(0);
-			}
-		}, "体温列表");
+
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("护理记录单单条记录------" + response);
+						mTemperatureList = GsonUtil.getPatientTemperature(response);
+						handler.sendEmptyMessage(0);
+					}
+				});
+
 	}
 
 	@Override

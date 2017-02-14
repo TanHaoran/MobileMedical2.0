@@ -1,11 +1,5 @@
 package com.thr.mobilemedical;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 
+import com.squareup.okhttp.Request;
 import com.thr.adapter.ExamAdapter;
 import com.thr.bean.Exam;
 import com.thr.bean.ExamTitle;
@@ -22,10 +17,17 @@ import com.thr.constant.LoginInfo;
 import com.thr.constant.Method;
 import com.thr.constant.SettingInfo;
 import com.thr.utils.GsonUtil;
-import com.thr.utils.HttpGetUtil;
 import com.thr.utils.L;
 import com.thr.utils.SelectbarUtil;
 import com.thr.view.MyProgressDialog;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @description 病患信息-检验界面
@@ -91,17 +93,25 @@ public class ExamFragment extends Fragment {
 	public void loadExamList(String patientHosId) {
 		String url = SettingInfo.SERVICE + Method.GET_LIS + "?PatientHosId="
 				+ patientHosId;
-		HttpGetUtil httpGet = new HttpGetUtil(getActivity()) {
 
-			@Override
-			public void success(String json) {
-				L.i("读取检验报告列表------" + json);
-				mExamList = GsonUtil.getExamList(json);
-				setData();
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
 
-			}
-		};
-		httpGet.doGet(url, mDialog, getActivity(), "检验报告列表");
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("读取检验报告列表------" + response);
+						mExamList = GsonUtil.getExamList(response);
+						setData();
+
+					}
+				});
 	}
 
 	/**

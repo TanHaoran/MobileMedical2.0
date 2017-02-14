@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.squareup.okhttp.Request;
 import com.thr.adapter.NursinglistAdapter;
 import com.thr.bean.Nursingpaper;
 import com.thr.constant.LoginInfo;
@@ -29,6 +30,8 @@ import com.thr.view.LeftMenuPopupWindow;
 import com.thr.view.MyProgressDialog;
 import com.thr.view.TitleBar;
 import com.thr.view.TitleBar.OnLeftClickListener;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 /**
  * @description 护理清单（静滴清单）界面
@@ -105,15 +108,25 @@ public class NursinglistActivity extends Activity {
 		String url = SettingInfo.NSIS
 				+ Method.QUERY_NURSE_ITEM_MOBILE_BY_STATISTICAL + "?officeid="
 				+ officeId;
-		HttpGetUtil httpGet = new HttpGetUtil(this) {
-			@Override
-			public void success(String json) {
-				L.i("返回值------" + json);
-				mNursingList = GsonUtil.getNursingpaperData(json);
-				setNursingpaperData();
-			}
-		};
-		httpGet.doGet(url, mDialog, this, "血氧数据");
+
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("返回值------" + response);
+						mNursingList = GsonUtil.getNursingpaperData(response);
+						setNursingpaperData();
+
+					}
+				});
 	}
 
 	/**

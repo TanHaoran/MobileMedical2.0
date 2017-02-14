@@ -1,13 +1,5 @@
 package com.thr.mobilemedical;
 
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
@@ -30,6 +22,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.squareup.okhttp.Request;
 import com.thr.adapter.PatientAdapter;
 import com.thr.bean.Nursingrecord;
 import com.thr.bean.NursingrecordFiled;
@@ -40,7 +33,6 @@ import com.thr.utils.ClientUtil;
 import com.thr.utils.ClientUtil.CallBack;
 import com.thr.utils.DateUtil;
 import com.thr.utils.GsonUtil;
-import com.thr.utils.HttpGetUtil;
 import com.thr.utils.HttpUtils;
 import com.thr.utils.L;
 import com.thr.utils.SelectbarUtil;
@@ -59,6 +51,16 @@ import com.thr.view.TimePopupWindow;
 import com.thr.view.TitleBar;
 import com.thr.view.TitleBar.OnLeftClickListener;
 import com.thr.view.TitleBar.OnRightClickListener;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * @description 护理记录单详细界面
@@ -307,21 +309,29 @@ public class TemperaturedetailActivity extends Activity {
 	private void loadNursingRecordFiled(String nursignId) {
 		String url = SettingInfo.SERVICE + Method.GET_NURSING_FILED
 				+ "?NursingId=" + nursignId;
-		HttpGetUtil httpGet = new HttpGetUtil(this) {
 
-			@Override
-			public void success(String json) {
-				L.i("护理记录单字段------" + json);
-				mFileds = GsonUtil.getNursingStructureList(json);
-				initFiledData();
-				// 读取单条护理记录单记录
-				loadNursingrecordData(LoginInfo.patient.getPATIENTHOSID(),
-						LoginInfo.patient.getPATIENTINTIMES(),
-						DateUtil.getYMD(),
-						LoginInfo.timePoints.get(LoginInfo.timeIndex));
-			}
-		};
-		httpGet.doGet(url, mDialog, this, "护理记录单");
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("护理记录单字段------" + response);
+						mFileds = GsonUtil.getNursingStructureList(response);
+						initFiledData();
+						// 读取单条护理记录单记录
+						loadNursingrecordData(LoginInfo.patient.getPATIENTHOSID(),
+								LoginInfo.patient.getPATIENTINTIMES(),
+								DateUtil.getYMD(),
+								LoginInfo.timePoints.get(LoginInfo.timeIndex));
+					}
+				});
 	}
 
 	/**
@@ -526,17 +536,27 @@ public class TemperaturedetailActivity extends Activity {
 				+ "?PatientHosId=" + patientHosId + "&PatientInTimes="
 				+ patientInTimes + "&TENDDAY=" + tendDay + "&TENDTIME="
 				+ tendTime;
-		HttpUtils.doGetAsyn(this, url, new HttpUtils.CallBack() {
 
-			@Override
-			public void onRequestComplete(String json) {
-				L.i("护理记录单单条记录------" + json);
-				mDatas = GsonUtil.getNursingrecordToMap(json);
-				Message msg = new Message();
-				msg.what = UPDATE_NURSINGRECORD;
-				mHandler.sendMessage(msg);
-			}
-		}, "护理记录单单条记录");
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("护理记录单单条记录------" + response);
+						mDatas = GsonUtil.getNursingrecordToMap(response);
+						Message msg = new Message();
+						msg.what = UPDATE_NURSINGRECORD;
+						mHandler.sendMessage(msg);
+					}
+				});
+
 	}
 
 	/**

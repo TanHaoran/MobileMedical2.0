@@ -1,7 +1,5 @@
 package com.thr.mobilemedical;
 
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -10,22 +8,19 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.squareup.okhttp.Request;
 import com.thr.adapter.DropAdapter;
-import com.thr.adapter.NursinglistAdapter;
 import com.thr.adapter.PatientAdapter;
 import com.thr.bean.Order;
 import com.thr.constant.LoginInfo;
 import com.thr.constant.Method;
 import com.thr.constant.SettingInfo;
 import com.thr.utils.GsonUtil;
-import com.thr.utils.HttpGetUtil;
-import com.thr.utils.L;
 import com.thr.utils.SelectbarUtil;
 import com.thr.view.LeftMenuPopupWindow;
 import com.thr.view.MyProgressDialog;
@@ -33,6 +28,10 @@ import com.thr.view.PatientPopupWindow;
 import com.thr.view.TitleBar;
 import com.thr.view.TitleBar.OnLeftClickListener;
 import com.thr.view.TitleBar.OnRightClickListener;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.List;
 
 /**
  * @description DropdetailActivity.java
@@ -196,16 +195,26 @@ public class DropdetailActivity extends Activity {
 				+ Method.GET_PATIENT_INFO_DOCTOR_ORDER_BY_PATIENTHOSID
 				+ "?OfficeID=" + officeId + "&PatientHosId=" + patientHosId
 				+ "&MedType=" + execType;
-		HttpGetUtil httpGet = new HttpGetUtil(this) {
 
-			@Override
-			public void success(String json) {
-				mOrderList = GsonUtil.getDropOrderList(json);
-				setListData();
-			}
 
-		};
-		httpGet.doGet(url, mDialog, this, "所有医嘱");
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						mOrderList = GsonUtil.getDropOrderList(response);
+						setListData();
+					}
+				});
+
+
 	}
 
 	/**

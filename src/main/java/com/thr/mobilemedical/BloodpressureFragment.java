@@ -5,6 +5,7 @@ import java.util.List;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.squareup.okhttp.Request;
 import com.thr.adapter.BloodAdapter;
 import com.thr.bean.Blood;
 import com.thr.constant.LoginInfo;
@@ -21,6 +23,8 @@ import com.thr.utils.GsonUtil;
 import com.thr.utils.HttpGetUtil;
 import com.thr.utils.L;
 import com.thr.view.MyProgressDialog;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 /**
  * @description 护理录入-血压
@@ -60,15 +64,25 @@ public class BloodpressureFragment extends Fragment {
 		String url = SettingInfo.NSIS
 				+ Method.QUERY_NURSE_ITEM_MOBILE_BY_BLOODPRESSURE
 				+ "?officeid=" + officeId;
-		HttpGetUtil httpGet = new HttpGetUtil(getActivity()) {
-			@Override
-			public void success(String json) {
-				L.i("返回值------" + json);
-				mBloodpressureList = GsonUtil.getBloodData(json);
-				setBloodpressureData();
-			}
-		};
-		httpGet.doGet(url, mDialog, getActivity(), "血氧数据");
+
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("返回值------" + response);
+						mBloodpressureList = GsonUtil.getBloodData(response);
+						setBloodpressureData();
+					}
+				});
+
 	}
 
 	protected void setBloodpressureData() {

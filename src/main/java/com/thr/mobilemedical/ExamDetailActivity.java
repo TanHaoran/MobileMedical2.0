@@ -1,7 +1,5 @@
 package com.thr.mobilemedical;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,17 +8,21 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.squareup.okhttp.Request;
 import com.thr.bean.ExamItem;
 import com.thr.constant.Method;
 import com.thr.constant.SettingInfo;
 import com.thr.utils.CommonAdapter;
 import com.thr.utils.GsonUtil;
-import com.thr.utils.HttpGetUtil;
 import com.thr.utils.L;
 import com.thr.utils.ViewHolder;
 import com.thr.view.MyProgressDialog;
 import com.thr.view.TitleBar;
 import com.thr.view.TitleBar.OnLeftClickListener;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.List;
 
 /**
  * @description ExamDetailActivity.java
@@ -75,21 +77,30 @@ public class ExamDetailActivity extends Activity {
 	/**
 	 * 读取检验报告单条记录
 	 * 
-	 * @param patientHosId
+	 * @param examId
 	 */
 	private void loadExamDetail(String examId) {
 		String url = SettingInfo.SERVICE + Method.GET_LIS_DETAILED + "?ID="
 				+ examId;
-		HttpGetUtil httpGet = new HttpGetUtil(this) {
 
-			@Override
-			public void success(String json) {
-				L.i("读取检验报告单条------" + json);
-				mExamItems = GsonUtil.getExamItemList(json);
-				setData();
-			}
-		};
-		httpGet.doGet(url, mDialog, this, "检验报告单条");
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("读取检验报告单条------" + response);
+						mExamItems = GsonUtil.getExamItemList(response);
+						setData();
+					}
+				});
+
 	}
 
 	protected void setData() {

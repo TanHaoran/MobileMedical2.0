@@ -1,10 +1,5 @@
 package com.thr.mobilemedical;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -16,7 +11,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
@@ -26,6 +20,7 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.squareup.okhttp.Request;
 import com.thr.adapter.DropAdapter;
 import com.thr.adapter.PatientAdapter;
 import com.thr.bean.Order;
@@ -37,8 +32,6 @@ import com.thr.utils.ClientUtil;
 import com.thr.utils.ClientUtil.CallBack;
 import com.thr.utils.DateUtil;
 import com.thr.utils.GsonUtil;
-import com.thr.utils.HttpGetUtil;
-import com.thr.utils.HttpUtils;
 import com.thr.utils.L;
 import com.thr.utils.SelectbarUtil;
 import com.thr.utils.TopActivityListener;
@@ -52,6 +45,13 @@ import com.thr.view.PatientPopupWindow;
 import com.thr.view.TitleBar;
 import com.thr.view.TitleBar.OnLeftClickListener;
 import com.thr.view.TitleBar.OnRightClickListener;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @description 医嘱执行界面
@@ -458,36 +458,48 @@ public class DropexecuteActivity extends Activity {
 				+ "?PatientHosId=" + patientHosId + "&PatientInTimes="
 				+ patientInTimes + "&ParentOrder=" + parentOrder
 				+ "&OrderClassify=" + orderClassify + "&ExecType=" + execType;
-		HttpUtils.doGetAsyn(this, url, new HttpUtils.CallBack() {
 
-			@Override
-			public void onRequestComplete(String json) {
-				L.i("已执行医嘱------" + json);
-				execOrderList = GsonUtil.getOrderList(json);
-				if (execOrderList != null && execOrderList.size() > 0) {
-					if (execOrderList.size() == 1
-							&& "".equals(execOrderList.get(0).getEXECTIME())) {
-						isExec = false;
-					} else {
-						for (Order o : execOrderList) {
-							// 判断如果列表中存在这个医嘱的话说明执行过了。
-							if (codeExecPlanDay.equals(o.getPLANEXECDAY())
-									&& codeExecPlanTime.equals(o
-											.getPLANEXECTIME())) {
-								isExec = true;
-								break;
-							} else {
+
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("已执行医嘱------" + response);
+						execOrderList = GsonUtil.getOrderList(response);
+						if (execOrderList != null && execOrderList.size() > 0) {
+							if (execOrderList.size() == 1
+									&& "".equals(execOrderList.get(0).getEXECTIME())) {
 								isExec = false;
+							} else {
+								for (Order o : execOrderList) {
+									// 判断如果列表中存在这个医嘱的话说明执行过了。
+									if (codeExecPlanDay.equals(o.getPLANEXECDAY())
+											&& codeExecPlanTime.equals(o
+											.getPLANEXECTIME())) {
+										isExec = true;
+										break;
+									} else {
+										isExec = false;
+									}
+								}
 							}
 						}
+						// 读取所有静滴医嘱
+						loadOrder(LoginInfo.patient.getPATIENTHOSID(),
+								LoginInfo.patient.getPATIENTINTIMES(),
+								codeOrderClassify, Method.DROP);
 					}
-				}
-				// 读取所有静滴医嘱
-				loadOrder(LoginInfo.patient.getPATIENTHOSID(),
-						LoginInfo.patient.getPATIENTINTIMES(),
-						codeOrderClassify, Method.DROP);
-			}
-		}, "已执行医嘱");
+				});
+
+
 
 		// String url = SettingInfo.SERVICE
 		// + Method.DOCTOR_ORDER_DETAILS_BY_PATIENTHOSID_PARENTORDER
@@ -540,16 +552,27 @@ public class DropexecuteActivity extends Activity {
 				+ "&PatientInTimes=" + LoginInfo.patient.getPATIENTINTIMES()
 				+ "&OrderClassify=" + codeOrderClassify + "&ExecType="
 				+ Method.DROP;
-		HttpUtils.doGetAsyn(this, url, new HttpUtils.CallBack() {
 
-			@Override
-			public void onRequestComplete(String json) {
-				mOrderList = GsonUtil.getOrderList(json);
-				Message msg = new Message();
-				msg.what = UPDATELIST;
-				mHandler.sendMessage(msg);
-			}
-		}, "已执行医嘱");
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						mOrderList = GsonUtil.getOrderList(response);
+						Message msg = new Message();
+						msg.what = UPDATELIST;
+						mHandler.sendMessage(msg);
+					}
+				});
+
+
 
 		// String url = SettingInfo.SERVICE
 		// + Method.DOCTOR_ORDER_DETAILS_BY_PATIENTHOSID

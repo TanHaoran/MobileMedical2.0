@@ -1,7 +1,5 @@
 package com.thr.mobilemedical;
 
-import java.util.List;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,16 +10,20 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.okhttp.Request;
 import com.thr.adapter.OrderAdapter;
 import com.thr.bean.Order;
 import com.thr.constant.LoginInfo;
 import com.thr.constant.Method;
 import com.thr.constant.SettingInfo;
 import com.thr.utils.GsonUtil;
-import com.thr.utils.HttpGetUtil;
 import com.thr.utils.L;
 import com.thr.utils.SelectbarUtil;
 import com.thr.view.MyProgressDialog;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.util.List;
 
 /**
  * @description 病患信息-医嘱界面
@@ -193,24 +195,33 @@ public class OrderFragment extends Fragment {
 		String url = SettingInfo.SERVICE + Method.DOCTOR_ORDER_BY_PATIENTHOSID
 				+ "?PatientHosId=" + patientHosId + "&PatientInTimes="
 				+ patientInTimes + "&OrderType=" + orderType;
-		HttpGetUtil httpGet = new HttpGetUtil(getActivity()) {
 
-			@Override
-			public void success(String json) {
-				L.i("长期医嘱------" + json);
-				mLongList = GsonUtil.getOrderList(json);
-				initOrderList(mLongList);
-				if (mLongList != null
-						&& mLongList.size() > 0
-						&& !mLongList.get(0).getPATIENTHOSID().trim()
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("长期医嘱------" + response);
+						mLongList = GsonUtil.getOrderList(response);
+						initOrderList(mLongList);
+						if (mLongList != null
+								&& mLongList.size() > 0
+								&& !mLongList.get(0).getPATIENTHOSID().trim()
 								.equals("")) {
-					mTextLong.setText("长期医嘱" + "(" + mLongList.size() + ")");
-				} else {
-					mTextLong.setText("长期医嘱");
-				}
-			}
-		};
-		httpGet.doGet(url, mDialog, getActivity(), "医嘱");
+							mTextLong.setText("长期医嘱" + "(" + mLongList.size() + ")");
+						} else {
+							mTextLong.setText("长期医嘱");
+						}
+					}
+				});
+
 	}
 
 	/**
@@ -221,22 +232,32 @@ public class OrderFragment extends Fragment {
 		String url = SettingInfo.SERVICE + Method.DOCTOR_ORDER_BY_PATIENTHOSID
 				+ "?PatientHosId=" + patientHosId + "&PatientInTimes="
 				+ patientInTimes + "&OrderType=" + orderType;
-		HttpGetUtil httpGet = new HttpGetUtil(getActivity()) {
 
-			@Override
-			public void success(String json) {
-				L.i("临时医嘱------" + json);
-				mTempList = GsonUtil.getOrderList(json);
-				if (mTempList != null
-						&& mTempList.size() > 0
-						&& !mTempList.get(0).getPATIENTHOSID().trim()
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+
+						L.i("临时医嘱------" + response);
+						mTempList = GsonUtil.getOrderList(response);
+						if (mTempList != null
+								&& mTempList.size() > 0
+								&& !mTempList.get(0).getPATIENTHOSID().trim()
 								.equals("")) {
-					mTextTemp.setText("临时医嘱" + "(" + mTempList.size() + ")");
-				} else {
-					mTextTemp.setText("临时医嘱");
-				}
-			}
-		};
-		httpGet.doGet(url, mDialog, getActivity(), "医嘱");
+							mTextTemp.setText("临时医嘱" + "(" + mTempList.size() + ")");
+						} else {
+							mTextTemp.setText("临时医嘱");
+						}
+					}
+				});
+
 	}
 }

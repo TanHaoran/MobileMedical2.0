@@ -1,9 +1,5 @@
 package com.thr.mobilemedical;
 
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
@@ -18,9 +14,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
 import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.squareup.okhttp.Request;
 import com.thr.adapter.PatientAdapter;
 import com.thr.bean.Nursingrecord;
 import com.thr.constant.LoginInfo;
@@ -30,7 +28,6 @@ import com.thr.utils.ClientUtil;
 import com.thr.utils.ClientUtil.CallBack;
 import com.thr.utils.DateUtil;
 import com.thr.utils.GsonUtil;
-import com.thr.utils.HttpUtils;
 import com.thr.utils.L;
 import com.thr.utils.SelectbarUtil;
 import com.thr.view.MyAlertDialog;
@@ -44,6 +41,13 @@ import com.thr.view.SelectPopupWindow.OnEnsureClickListener;
 import com.thr.view.TitleBar;
 import com.thr.view.TitleBar.OnLeftClickListener;
 import com.thr.view.TitleBar.OnRightClickListener;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @description BloodsugerdetailActivity.java
@@ -264,17 +268,28 @@ public class BloodsugerdetailActivity extends Activity {
 				+ "?PatientHosId=" + patientHosId + "&PatientInTimes="
 				+ patientInTimes + "&TENDDAY=" + tendDay + "&TENDTIME="
 				+ tendTime;
-		HttpUtils.doGetAsyn(this, url, new HttpUtils.CallBack() {
 
-			@Override
-			public void onRequestComplete(String json) {
-				L.i("血糖单条记录------" + json);
-				mDatas = GsonUtil.getNursingrecordToMap(json);
-				Message msg = new Message();
-				msg.what = UPDATE;
-				mHandler.sendMessage(msg);
-			}
-		}, "血糖单条记录");
+		OkHttpUtils
+				.get()
+				.url(url)
+				.build()
+				.execute(new StringCallback() {
+					@Override
+					public void onError(Request request, Exception e) {
+
+					}
+
+					@Override
+					public void onResponse(String response) {
+						L.i("血糖单条记录------" + response);
+						mDatas = GsonUtil.getNursingrecordToMap(response);
+						Message msg = new Message();
+						msg.what = UPDATE;
+						mHandler.sendMessage(msg);
+					}
+				});
+
+
 	}
 
 	protected void setData() {
