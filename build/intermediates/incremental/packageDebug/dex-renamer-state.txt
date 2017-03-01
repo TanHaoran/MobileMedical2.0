@@ -1,7 +1,0 @@
-#Tue Feb 14 17:04:32 CST 2017
-base.0=E\:\\AndroidProject\\MyApplication\\MobileMedical2.0\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_941af1527b7bf94dbcd7cda0f6546ce075ca1bb6
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=E\:\\AndroidProject\\MyApplication\\MobileMedical2.0\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_2fd37997c358235dbffe1e6ee613b5935ff4e669\\classes.dex
-base.1=E\:\\AndroidProject\\MyApplication\\MobileMedical2.0\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_2fd37997c358235dbffe1e6ee613b5935ff4e669
-file.0=E\:\\AndroidProject\\MyApplication\\MobileMedical2.0\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_941af1527b7bf94dbcd7cda0f6546ce075ca1bb6\\classes.dex

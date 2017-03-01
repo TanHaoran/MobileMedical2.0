@@ -21,7 +21,6 @@
         android:background="@color/patient_item_space_bg" />
 
     <LinearLayout
-        android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dialog_content_paddingtop"
@@ -49,7 +48,6 @@
     </LinearLayout>
     
     <LinearLayout
-        android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dialog_content_paddingtop"
@@ -66,6 +64,61 @@
 
         <EditText
             android:id="@+id/et_nsis"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_item_height"
+            android:layout_margin="20dp"
+            android:background="@drawable/setting_edit_bg"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColor="@color/bottom_tab_text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dialog_content_paddingtop"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="广播action"
+            android:textColor="@color/bottom_tab_text"
+            android:textSize="16sp"
+            android:id="@+id/textView"/>
+
+        <EditText
+            android:id="@+id/et_action"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_item_height"
+            android:layout_margin="20dp"
+            android:background="@drawable/setting_edit_bg"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColor="@color/bottom_tab_text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dialog_content_paddingtop"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Intent_extra_string"
+            android:textColor="@color/bottom_tab_text"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_extra"
             android:layout_width="match_parent"
             android:layout_height="@dimen/setting_item_height"
             android:layout_margin="20dp"

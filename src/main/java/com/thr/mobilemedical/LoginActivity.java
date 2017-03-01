@@ -106,7 +106,7 @@ public class LoginActivity extends Activity {
         MyApplication.getInstance().addActivity(this);
         initView();
         loadConfig();
-        loadDeviceInfo();
+//        loadDeviceInfo();
     }
 
     /**
@@ -128,7 +128,7 @@ public class LoginActivity extends Activity {
 
                     @Override
                     public void onResponse(String response) {
-                        mUsers = GsonUtil.getUsers(response)                ;
+                        mUsers = GsonUtil.getUsers(response);
                         showUserPopWindow();
                     }
                 });
@@ -449,22 +449,25 @@ public class LoginActivity extends Activity {
                     result = new String(barcode, 0, barocodelen).replace("#",
                             "");
                 }
+
                 L.i(result);
                 String[] resultArray = result.split("@");
-                String username = resultArray[0];
-                String password = resultArray[1];
-                String officeId = resultArray[2];
-                if (LoginInfo.OFFICE_ID.equals(officeId)) {
-                    login(username, password);
-                } else {
-                    new MyAlertDialog(LoginActivity.this, "科室不相符，请重新选择科室！")
-                            .show();
+                if (resultArray.length == 3) {
+                    String username = resultArray[0];
+                    String password = resultArray[1];
+                    String officeId = resultArray[2];
+                    if (LoginInfo.OFFICE_ID.equals(officeId)) {
+                        login(username, password);
+                    } else {
+                        new MyAlertDialog(LoginActivity.this, "科室不相符，请重新选择科室！")
+                                .show();
+                    }
                 }
+
             }
         };
 
-        IntentFilter filter = new IntentFilter(SettingInfo.SCAN_FILTER);
-        filter.addAction("urovo.rcv.message");
+        IntentFilter filter = new IntentFilter("android.provider.sdlMessage");
 
         registerReceiver(scanReceiver, filter);
 
@@ -476,12 +479,14 @@ public class LoginActivity extends Activity {
     private void loadDeviceInfo() {
         String info = DeviceUtil.getCPUSerial();
         L.i(info);
-        if (info.trim().startsWith("ARM")) {
-            SettingInfo.SCAN_FILTER = SettingInfo.T8_SCANFILTER;
-            SettingInfo.RECEIVE_STRING = SettingInfo.T8_RECEIVE_STRING;
-        } else {
-            SettingInfo.SCAN_FILTER = SettingInfo.NEW_SCAN_FILTER;
-            SettingInfo.RECEIVE_STRING = SettingInfo.NEW_RECEIVE_STRING;
-        }
+//        if (info.trim().startsWith("ARM")) {
+//            SettingInfo.SCAN_FILTER = SettingInfo.T8_SCANFILTER;
+//            SettingInfo.RECEIVE_STRING = SettingInfo.T8_RECEIVE_STRING;
+//        } else {
+//            SettingInfo.SCAN_FILTER = SettingInfo.NEW_SCAN_FILTER;
+//            SettingInfo.RECEIVE_STRING = SettingInfo.NEW_RECEIVE_STRING;
+//        }
+        SettingInfo.SCAN_FILTER = "android.provider.sdlMessage";
+        SettingInfo.RECEIVE_STRING = "msg";
     }
 }

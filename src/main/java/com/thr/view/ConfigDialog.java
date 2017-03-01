@@ -39,6 +39,8 @@ public class ConfigDialog extends Dialog {
 	 * NSIS地址
 	 */
 	private EditText mEditNsis;
+	private EditText mEditAction;
+	private EditText mEditExtra;
 
 	/**
 	 * 确定按钮
@@ -62,6 +64,8 @@ public class ConfigDialog extends Dialog {
 
 		mEditAdd = (EditText) findViewById(R.id.et_add);
 		mEditNsis = (EditText) findViewById(R.id.et_nsis);
+		mEditAction = (EditText) findViewById(R.id.et_action);
+		mEditExtra = (EditText) findViewById(R.id.et_extra);
 		mSure = (Button) findViewById(R.id.btn_sure);
 		mCancle = (Button) findViewById(R.id.btn_cancle);
 
@@ -93,10 +97,16 @@ public class ConfigDialog extends Dialog {
 				Activity.MODE_PRIVATE);
 		String add = mEditAdd.getText().toString();
 		String nsis = mEditNsis.getText().toString();
+		String action = mEditAction.getText().toString();
+		String extra = mEditExtra.getText().toString();
 		sp.edit().putString("add", add).commit();
 		sp.edit().putString("nsis", nsis).commit();
+		sp.edit().putString("action", action).commit();
+		sp.edit().putString("extra", extra).commit();
 		SettingInfo.SERVICE = add;
 		SettingInfo.NSIS = nsis;
+		SettingInfo.SCAN_FILTER = action;
+		SettingInfo.RECEIVE_STRING = extra;
 	}
 
 	/**
@@ -110,9 +120,16 @@ public class ConfigDialog extends Dialog {
 				"http://192.168.0.100:4010/MMIPService/");
 		String nsis = sp.getString("nsis",
 				"http://192.168.0.100:4514/NSIS_WebAPI/");
+		String action = sp.getString("action", "");
+		String extra = sp.getString("extra", "");
 		SettingInfo.SERVICE = add;
 		SettingInfo.NSIS = nsis;
+		SettingInfo.SCAN_FILTER = action;
+		SettingInfo.RECEIVE_STRING = extra;
+
 		mEditAdd.setText(add);
 		mEditNsis.setText(nsis);
+		mEditAction.setText(action);
+		mEditExtra.setText(extra);
 	}
 }

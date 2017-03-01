@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="2.0.0"><source path="E:\AndroidProject\MyApplication\MobileMedical2.0\build\intermediates\exploded-aar\com.zhy\okhttputils\2.0.0\assets"/></dataSet><dataSet config="main"><source path="E:\AndroidProject\MyApplication\MobileMedical2.0\src\main\assets"/><source path="E:\AndroidProject\MyApplication\MobileMedical2.0\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="E:\AndroidProject\MyApplication\MobileMedical2.0\src\debug\assets"/></dataSet></merger>
