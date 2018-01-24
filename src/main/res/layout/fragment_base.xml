@@ -57,6 +57,7 @@
                             android:textSize="@dimen/patientinfo_base_detail_item_textsize" />
 
                         <TextView
+                            android:text="23"
                             android:id="@+id/tv_bedno"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -80,6 +81,7 @@
                             android:textSize="@dimen/patientinfo_base_detail_item_textsize" />
 
                         <TextView
+                            android:text="2222342423"
                             android:id="@+id/tv_inhos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -103,6 +105,7 @@
                             android:textSize="@dimen/patientinfo_base_detail_item_textsize" />
 
                         <TextView
+                            android:text="李彩霞"
                             android:id="@+id/tv_namebase"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -126,6 +129,7 @@
                             android:textSize="@dimen/patientinfo_base_detail_item_textsize" />
 
                         <TextView
+                            android:text="23"
                             android:id="@+id/tv_agebase"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -149,6 +153,7 @@
                             android:textSize="@dimen/patientinfo_base_detail_item_textsize" />
 
                         <TextView
+                            android:text="女"
                             android:id="@+id/tv_sex"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -218,6 +223,7 @@
                             android:textSize="@dimen/patientinfo_base_detail_item_textsize" />
 
                         <TextView
+                            android:text="2650"
                             android:id="@+id/tv_balance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -290,6 +296,7 @@
                             android:textSize="@dimen/patientinfo_base_detail_item_textsize" />
 
                         <TextView
+                            android:text="2018-1-24"
                             android:id="@+id/tv_indate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -336,6 +343,7 @@
                             android:textSize="@dimen/patientinfo_base_detail_item_textsize" />
 
                         <TextView
+                            android:text="2"
                             android:id="@+id/tv_day"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

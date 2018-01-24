@@ -19,7 +19,8 @@
         android:debuggable="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:screenOrientation="portrait" >
+        android:screenOrientation="portrait"
+        android:testOnly="true" >
         <activity
             android:name="com.thr.mobilemedical.LoginActivity"
             android:label="@string/app_name" >

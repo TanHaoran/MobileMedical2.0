@@ -51,7 +51,7 @@ public class BloodpressureFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_bloodpressure, container,
 				false);
 		initView(v);
-		loadBloodoxygenData("2037");
+//		loadBloodoxygenData("2037");
 		return v;
 	}
 

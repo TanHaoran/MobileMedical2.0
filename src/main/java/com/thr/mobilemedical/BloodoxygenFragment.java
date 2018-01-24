@@ -50,7 +50,7 @@ public class BloodoxygenFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_bloodoxygen, container,
 				false);
 		initView(v);
-		loadBloodoxygenData("2037");
+//		loadBloodoxygenData("2037");
 		return v;
 	}
 

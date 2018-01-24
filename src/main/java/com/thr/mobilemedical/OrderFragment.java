@@ -62,10 +62,10 @@ public class OrderFragment extends Fragment {
 			Bundle savedInstanceState) {
 		v = inflater.inflate(R.layout.fragment_order, container, false);
 		initView();
-		loadLongOrder(LoginInfo.patient.getPATIENTHOSID(),
-				LoginInfo.patient.getPATIENTINTIMES(), "1");
-		loadTempOrder(LoginInfo.patient.getPATIENTHOSID(),
-				LoginInfo.patient.getPATIENTINTIMES(), "0");
+//		loadLongOrder(LoginInfo.patient.getPATIENTHOSID(),
+//				LoginInfo.patient.getPATIENTINTIMES(), "1");
+//		loadTempOrder(LoginInfo.patient.getPATIENTHOSID(),
+//				LoginInfo.patient.getPATIENTINTIMES(), "0");
 		return v;
 	}
 

@@ -51,7 +51,7 @@ public class CostFragment extends Fragment {
         mArrearage = (TextView) v.findViewById(R.id.tv_arrearage);
         mPayway = (TextView) v.findViewById(R.id.tv_payway);
 
-        initData();
+//        initData();
     }
 
     public void initSelectbar() {

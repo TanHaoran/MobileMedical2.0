@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/patientinfo_base_detail_item_rightpart_marginleft"
-                    android:text="+004"
+                    android:text="565489"
                     android:textColor="@color/patientinfo_base_item_rightpart_text"
                     android:textSize="@dimen/patientinfo_cost_text_size" />
             </LinearLayout>
@@ -66,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/patientinfo_base_detail_item_rightpart_marginleft"
-                    android:text="+004"
+                    android:text="张彩霞"
                     android:textColor="@color/patientinfo_base_item_rightpart_text"
                     android:textSize="@dimen/patientinfo_cost_text_size" />
             </LinearLayout>
@@ -114,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/patientinfo_base_detail_item_rightpart_marginleft"
-                    android:text="+004"
+                    android:text="1000"
                     android:textColor="@color/patientinfo_selectbar_bg"
                     android:textSize="@dimen/patientinfo_cost_text_size" />
             </LinearLayout>
@@ -138,7 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/patientinfo_base_detail_item_rightpart_marginleft"
-                    android:text="+004"
+                    android:text="600"
                     android:textColor="@color/patientinfo_selectbar_bg"
                     android:textSize="@dimen/patientinfo_cost_text_size" />
             </LinearLayout>
@@ -162,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/patientinfo_base_detail_item_rightpart_marginleft"
-                    android:text="+004"
+                    android:text="400"
                     android:textColor="@color/patientinfo_selectbar_bg"
                     android:textSize="@dimen/patientinfo_cost_text_size" />
             </LinearLayout>
@@ -186,7 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/patientinfo_base_detail_item_rightpart_marginleft"
-                    android:text="+004"
+                    android:text="支付宝"
                     android:textColor="@color/patientinfo_base_item_rightpart_text"
                     android:textSize="@dimen/patientinfo_cost_text_size" />
             </LinearLayout>

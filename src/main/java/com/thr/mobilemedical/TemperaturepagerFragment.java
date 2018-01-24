@@ -68,11 +68,11 @@ public class TemperaturepagerFragment extends Fragment {
 
 		initView(v);
 		// 读取护理记录单字段以获取时间段
-		if (LoginInfo.nursingrecordList.get(0) != null) {
-			loadNursingRecordFiled(LoginInfo.nursingrecordList.get(0)
-					.getNURSINGID());
-		}
-		loadPatientTemperature(LoginInfo.OFFICE_ID);
+//		if (LoginInfo.nursingrecordList.get(0) != null) {
+//			loadNursingRecordFiled(LoginInfo.nursingrecordList.get(0)
+//					.getNURSINGID());
+//		}
+//		loadPatientTemperature(LoginInfo.OFFICE_ID);
 		return v;
 	}
 
@@ -241,6 +241,6 @@ public class TemperaturepagerFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		updateTemperatureForm();
+//		updateTemperatureForm();
 	}
 }

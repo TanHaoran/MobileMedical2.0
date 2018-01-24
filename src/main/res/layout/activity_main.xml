@@ -1,29 +1,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:thr="http://schemas.android.com/apk/res/com.thr.mobilemedical"
-    android:id="@+id/ll_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical" >
+              xmlns:thr="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/ll_main"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
 
     <com.thr.view.TitleBar
         android:id="@+id/titlebar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/titlebar_height"
-        thr:titleText="@string/homepage" />
+        thr:titleText="@string/homepage"/>
 
     <ScrollView
         android:id="@+id/sv_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/homepage_tag_text_margintop"
-        android:scrollbars="none" >
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_officename"
@@ -33,7 +32,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="@dimen/homepage_tag_text_paddingleft"
                 android:textColor="@color/login_btn_bg_normal"
-                android:textSize="@dimen/homepage_tag_text_size" />
+                android:textSize="@dimen/homepage_tag_text_size"/>
 
             <!-- 总病患 -->
 
@@ -43,7 +42,7 @@
                 android:layout_height="@dimen/homepage_content_text_height"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/homepage_tag_text_paddingleft"
-                android:paddingRight="@dimen/homepage_tag_text_paddingleft" >
+                android:paddingRight="@dimen/homepage_tag_text_paddingleft">
 
                 <TextView
                     android:layout_width="@dimen/homepage_patient_type_text_width"
@@ -51,7 +50,7 @@
                     android:layout_centerVertical="true"
                     android:text="@string/allpatient"
                     android:textColor="@color/homepage_conent_text"
-                    android:textSize="@dimen/homepage_tag_text_size" />
+                    android:textSize="@dimen/homepage_tag_text_size"/>
 
                 <ImageView
                     android:id="@+id/iv_arrowallpatient"
@@ -59,7 +58,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/arrow" />
+                    android:src="@drawable/arrow"/>
 
                 <TextView
                     android:id="@+id/tv_peopleallpatient"
@@ -70,7 +69,7 @@
                     android:layout_toLeftOf="@id/iv_arrowallpatient"
                     android:text="@string/people"
                     android:textColor="@color/infocenter_people_text"
-                    android:textSize="@dimen/homepage_people_text_size" />
+                    android:textSize="@dimen/homepage_people_text_size"/>
 
                 <TextView
                     android:id="@+id/tv_allpatient"
@@ -79,14 +78,15 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/tv_peopleallpatient"
                     android:gravity="right"
+                    android:text="40"
                     android:textColor="@color/homepage_number_text"
-                    android:textSize="@dimen/homepage_number_text_size" />
+                    android:textSize="@dimen/homepage_number_text_size"/>
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/homepage_tag_text_bg" />
+                android:background="@color/homepage_tag_text_bg"/>
 
             <!-- 今日入院 -->
 
@@ -96,7 +96,7 @@
                 android:layout_height="@dimen/homepage_content_text_height"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/homepage_tag_text_paddingleft"
-                android:paddingRight="@dimen/homepage_tag_text_paddingleft" >
+                android:paddingRight="@dimen/homepage_tag_text_paddingleft">
 
                 <TextView
                     android:layout_width="@dimen/homepage_patient_type_text_width"
@@ -104,7 +104,7 @@
                     android:layout_centerVertical="true"
                     android:text="@string/inpatient"
                     android:textColor="@color/homepage_conent_text"
-                    android:textSize="@dimen/homepage_tag_text_size" />
+                    android:textSize="@dimen/homepage_tag_text_size"/>
 
                 <ImageView
                     android:id="@+id/iv_arrowinpatient"
@@ -112,7 +112,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/arrow" />
+                    android:src="@drawable/arrow"/>
 
                 <TextView
                     android:id="@+id/tv_peopleinpatient"
@@ -123,9 +123,10 @@
                     android:layout_toLeftOf="@id/iv_arrowinpatient"
                     android:text="@string/people"
                     android:textColor="@color/infocenter_people_text"
-                    android:textSize="@dimen/homepage_people_text_size" />
+                    android:textSize="@dimen/homepage_people_text_size"/>
 
                 <TextView
+                    android:text="4"
                     android:id="@+id/tv_inpatient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,13 +134,13 @@
                     android:layout_toLeftOf="@id/tv_peopleinpatient"
                     android:gravity="right"
                     android:textColor="@color/homepage_number_text"
-                    android:textSize="@dimen/homepage_number_text_size" />
+                    android:textSize="@dimen/homepage_number_text_size"/>
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/homepage_tag_text_bg" />
+                android:background="@color/homepage_tag_text_bg"/>
 
             <!-- 今日出院 -->
 
@@ -149,7 +150,7 @@
                 android:layout_height="@dimen/homepage_content_text_height"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/homepage_tag_text_paddingleft"
-                android:paddingRight="@dimen/homepage_tag_text_paddingleft" >
+                android:paddingRight="@dimen/homepage_tag_text_paddingleft">
 
                 <TextView
                     android:layout_width="@dimen/homepage_patient_type_text_width"
@@ -157,7 +158,7 @@
                     android:layout_centerVertical="true"
                     android:text="@string/outpatient"
                     android:textColor="@color/homepage_conent_text"
-                    android:textSize="@dimen/homepage_tag_text_size" />
+                    android:textSize="@dimen/homepage_tag_text_size"/>
 
                 <ImageView
                     android:id="@+id/iv_arrowoutpatient"
@@ -165,7 +166,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/arrow" />
+                    android:src="@drawable/arrow"/>
 
                 <TextView
                     android:id="@+id/tv_peopleoutpatient"
@@ -176,22 +177,23 @@
                     android:layout_toLeftOf="@id/iv_arrowoutpatient"
                     android:text="@string/people"
                     android:textColor="@color/infocenter_people_text"
-                    android:textSize="@dimen/homepage_people_text_size" />
+                    android:textSize="@dimen/homepage_people_text_size"/>
 
                 <TextView
+                    android:text="2"
                     android:id="@+id/tv_outpatient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/tv_peopleoutpatient"
                     android:textColor="@color/homepage_number_text"
-                    android:textSize="@dimen/homepage_number_text_size" />
+                    android:textSize="@dimen/homepage_number_text_size"/>
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/homepage_tag_text_bg" />
+                android:background="@color/homepage_tag_text_bg"/>
 
             <!-- 今日手术 -->
 
@@ -201,7 +203,7 @@
                 android:layout_height="@dimen/homepage_content_text_height"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/homepage_tag_text_paddingleft"
-                android:paddingRight="@dimen/homepage_tag_text_paddingleft" >
+                android:paddingRight="@dimen/homepage_tag_text_paddingleft">
 
                 <TextView
                     android:layout_width="@dimen/homepage_patient_type_text_width"
@@ -209,7 +211,7 @@
                     android:layout_centerVertical="true"
                     android:text="@string/operatpatient"
                     android:textColor="@color/homepage_conent_text"
-                    android:textSize="@dimen/homepage_tag_text_size" />
+                    android:textSize="@dimen/homepage_tag_text_size"/>
 
                 <ImageView
                     android:id="@+id/iv_arrowoperatpatient"
@@ -217,7 +219,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/arrow" />
+                    android:src="@drawable/arrow"/>
 
                 <TextView
                     android:id="@+id/tv_peopleoperatpatient"
@@ -228,22 +230,23 @@
                     android:layout_toLeftOf="@id/iv_arrowoperatpatient"
                     android:text="@string/people"
                     android:textColor="@color/infocenter_people_text"
-                    android:textSize="@dimen/homepage_people_text_size" />
+                    android:textSize="@dimen/homepage_people_text_size"/>
 
                 <TextView
+                    android:text="2"
                     android:id="@+id/tv_operationpatient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/tv_peopleoperatpatient"
                     android:textColor="@color/homepage_number_text"
-                    android:textSize="@dimen/homepage_number_text_size" />
+                    android:textSize="@dimen/homepage_number_text_size"/>
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/homepage_tag_text_bg" />
+                android:background="@color/homepage_tag_text_bg"/>
             <!-- 特级护理 -->
 
             <RelativeLayout
@@ -252,7 +255,7 @@
                 android:layout_height="@dimen/homepage_content_text_height"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/homepage_tag_text_paddingleft"
-                android:paddingRight="@dimen/homepage_tag_text_paddingleft" >
+                android:paddingRight="@dimen/homepage_tag_text_paddingleft">
 
                 <TextView
                     android:layout_width="@dimen/homepage_patient_type_text_width"
@@ -260,7 +263,7 @@
                     android:layout_centerVertical="true"
                     android:text="@string/speciallevelpatient"
                     android:textColor="@color/homepage_conent_text"
-                    android:textSize="@dimen/homepage_tag_text_size" />
+                    android:textSize="@dimen/homepage_tag_text_size"/>
 
                 <ImageView
                     android:id="@+id/iv_arrowspeciallevelpatient"
@@ -268,7 +271,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/arrow" />
+                    android:src="@drawable/arrow"/>
 
                 <TextView
                     android:id="@+id/tv_peoplespeciallevelpatient"
@@ -279,22 +282,23 @@
                     android:layout_toLeftOf="@id/iv_arrowspeciallevelpatient"
                     android:text="@string/people"
                     android:textColor="@color/infocenter_people_text"
-                    android:textSize="@dimen/homepage_people_text_size" />
+                    android:textSize="@dimen/homepage_people_text_size"/>
 
                 <TextView
+                    android:text="1"
                     android:id="@+id/tv_speciallevelpatient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/tv_peoplespeciallevelpatient"
                     android:textColor="@color/homepage_number_text"
-                    android:textSize="@dimen/homepage_number_text_size" />
+                    android:textSize="@dimen/homepage_number_text_size"/>
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/homepage_tag_text_bg" />
+                android:background="@color/homepage_tag_text_bg"/>
             <!-- 一级护理 -->
 
             <RelativeLayout
@@ -303,7 +307,7 @@
                 android:layout_height="@dimen/homepage_content_text_height"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/homepage_tag_text_paddingleft"
-                android:paddingRight="@dimen/homepage_tag_text_paddingleft" >
+                android:paddingRight="@dimen/homepage_tag_text_paddingleft">
 
                 <TextView
                     android:layout_width="@dimen/homepage_patient_type_text_width"
@@ -311,7 +315,7 @@
                     android:layout_centerVertical="true"
                     android:text="@string/onelevelpatient"
                     android:textColor="@color/homepage_conent_text"
-                    android:textSize="@dimen/homepage_tag_text_size" />
+                    android:textSize="@dimen/homepage_tag_text_size"/>
 
                 <ImageView
                     android:id="@+id/iv_arrowonelevelpatient"
@@ -319,7 +323,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/arrow" />
+                    android:src="@drawable/arrow"/>
 
                 <TextView
                     android:id="@+id/tv_peopleonelevelpatient"
@@ -330,22 +334,23 @@
                     android:layout_toLeftOf="@id/iv_arrowonelevelpatient"
                     android:text="@string/people"
                     android:textColor="@color/infocenter_people_text"
-                    android:textSize="@dimen/homepage_people_text_size" />
+                    android:textSize="@dimen/homepage_people_text_size"/>
 
                 <TextView
+                    android:text="2"
                     android:id="@+id/tv_onelevelpatient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/tv_peopleonelevelpatient"
                     android:textColor="@color/homepage_number_text"
-                    android:textSize="@dimen/homepage_number_text_size" />
+                    android:textSize="@dimen/homepage_number_text_size"/>
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/homepage_tag_text_bg" />
+                android:background="@color/homepage_tag_text_bg"/>
             <!-- 二级护理 -->
 
             <RelativeLayout
@@ -354,7 +359,7 @@
                 android:layout_height="@dimen/homepage_content_text_height"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/homepage_tag_text_paddingleft"
-                android:paddingRight="@dimen/homepage_tag_text_paddingleft" >
+                android:paddingRight="@dimen/homepage_tag_text_paddingleft">
 
                 <TextView
                     android:layout_width="@dimen/homepage_patient_type_text_width"
@@ -362,7 +367,7 @@
                     android:layout_centerVertical="true"
                     android:text="@string/twolevelpatient"
                     android:textColor="@color/homepage_conent_text"
-                    android:textSize="@dimen/homepage_tag_text_size" />
+                    android:textSize="@dimen/homepage_tag_text_size"/>
 
                 <ImageView
                     android:id="@+id/iv_arrowtwolevelpatient"
@@ -370,7 +375,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/arrow" />
+                    android:src="@drawable/arrow"/>
 
                 <TextView
                     android:id="@+id/tv_peopletwolevelpatient"
@@ -381,22 +386,23 @@
                     android:layout_toLeftOf="@id/iv_arrowtwolevelpatient"
                     android:text="@string/people"
                     android:textColor="@color/infocenter_people_text"
-                    android:textSize="@dimen/homepage_people_text_size" />
+                    android:textSize="@dimen/homepage_people_text_size"/>
 
                 <TextView
+                    android:text="5"
                     android:id="@+id/tv_twolevelpatient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/tv_peopletwolevelpatient"
                     android:textColor="@color/homepage_number_text"
-                    android:textSize="@dimen/homepage_number_text_size" />
+                    android:textSize="@dimen/homepage_number_text_size"/>
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/homepage_tag_text_bg" />
+                android:background="@color/homepage_tag_text_bg"/>
 
             <!-- 三级护理 -->
 
@@ -406,7 +412,7 @@
                 android:layout_height="@dimen/homepage_content_text_height"
                 android:orientation="horizontal"
                 android:paddingLeft="@dimen/homepage_tag_text_paddingleft"
-                android:paddingRight="@dimen/homepage_tag_text_paddingleft" >
+                android:paddingRight="@dimen/homepage_tag_text_paddingleft">
 
                 <TextView
                     android:layout_width="@dimen/homepage_patient_type_text_width"
@@ -414,7 +420,7 @@
                     android:layout_centerVertical="true"
                     android:text="@string/threelevelpatient"
                     android:textColor="@color/homepage_conent_text"
-                    android:textSize="@dimen/homepage_tag_text_size" />
+                    android:textSize="@dimen/homepage_tag_text_size"/>
 
                 <ImageView
                     android:id="@+id/iv_arrowthreelevelpatient"
@@ -422,7 +428,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/arrow" />
+                    android:src="@drawable/arrow"/>
 
                 <TextView
                     android:id="@+id/tv_peoplethreelevelpatient"
@@ -433,33 +439,34 @@
                     android:layout_toLeftOf="@id/iv_arrowthreelevelpatient"
                     android:text="@string/people"
                     android:textColor="@color/infocenter_people_text"
-                    android:textSize="@dimen/homepage_people_text_size" />
+                    android:textSize="@dimen/homepage_people_text_size"/>
 
                 <TextView
+                    android:text="32"
                     android:id="@+id/tv_threelevelpatient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/tv_peoplethreelevelpatient"
                     android:textColor="@color/homepage_number_text"
-                    android:textSize="@dimen/homepage_number_text_size" />
+                    android:textSize="@dimen/homepage_number_text_size"/>
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/homepage_tag_text_bg" />
+                android:background="@color/homepage_tag_text_bg"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/homepage_tag_text_margintop"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/homepage_tag_text_height"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -469,17 +476,17 @@
                         android:paddingLeft="@dimen/homepage_tag_text_paddingleft"
                         android:text="@string/infocenter"
                         android:textColor="@color/login_btn_bg_normal"
-                        android:textSize="@dimen/homepage_tag_text_size" />
+                        android:textSize="@dimen/homepage_tag_text_size"/>
 
                     <ImageView
-                        android:layout_marginTop="10dp"
                         android:id="@+id/iv_refresh"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
                         android:contentDescription="@string/app_name"
-                        android:src="@drawable/refresh" />
+                        android:src="@drawable/refresh"/>
                 </RelativeLayout>
 
                 <LinearLayout
@@ -487,7 +494,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/homepage_tag_text_margintop"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

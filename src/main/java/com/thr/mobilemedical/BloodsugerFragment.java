@@ -49,7 +49,7 @@ public class BloodsugerFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_bloodsuger, container,
 				false);
 		initView(v);
-		loadBloodsugerData("2037");
+//		loadBloodsugerData("2037");
 		return v;
 	}
 

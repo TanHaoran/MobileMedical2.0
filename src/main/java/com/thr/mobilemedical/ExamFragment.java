@@ -58,7 +58,7 @@ public class ExamFragment extends Fragment {
 			Bundle savedInstanceState) {
 		v = inflater.inflate(R.layout.fragment_exam, container, false);
 		initView();
-		loadExamList(LoginInfo.patient.getPATIENTHOSID());
+//		loadExamList(LoginInfo.patient.getPATIENTHOSID());
 		return v;
 	}
 

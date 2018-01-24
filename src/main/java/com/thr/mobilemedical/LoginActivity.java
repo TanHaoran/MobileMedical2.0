@@ -302,19 +302,8 @@ public class LoginActivity extends Activity {
 
     @OnClick(R.id.btn_login)
     public void loginBtn(View view) {
-        if (TextUtils.isEmpty(mEditUsername.getText().toString())) {
-            MyAlertDialog alertDialog = new MyAlertDialog(this, "请选择登陆用户");
-            alertDialog.show();
-            return;
-        }
-        if (TextUtils.isEmpty(mEditPassword.getText().toString())) {
-            MyAlertDialog alertDialog = new MyAlertDialog(this, "请输入密码");
-            alertDialog.show();
-            return;
-        }
-        String username = LoginInfo.user.getLOGINNAME();
-        String password = mEditPassword.getText().toString();
-        login(username, password);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     /**

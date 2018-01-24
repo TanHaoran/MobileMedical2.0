@@ -2,7 +2,6 @@ package com.thr.utils;
 
 import android.annotation.SuppressLint;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -84,14 +83,14 @@ public class DateUtil {
      * @throws ParseException 转换异常
      */
     public static Date StringToDate(String dateStr, String formatStr) {
-        DateFormat sdf = new SimpleDateFormat(formatStr);
-        Date date = null;
-        try {
-            date = sdf.parse(dateStr);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
+//        DateFormat sdf = new SimpleDateFormat(formatStr);
+//        Date date = null;
+//        try {
+//            date = sdf.parse(dateStr);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+        return new Date();
     }
 
     /**

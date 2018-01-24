@@ -78,7 +78,7 @@ public class BaseFragment extends Fragment {
         mTextHistory = (TextView) v.findViewById(R.id.tv_history);
 
         // 初始化病人信息
-        initData();
+//        initData();
 
     }
 
@@ -108,10 +108,10 @@ public class BaseFragment extends Fragment {
             mTextAge.setText(DateUtil.getAge(LoginInfo.patient
                     .getBIRTHDAY()) + "岁");
             mTextSex.setText(LoginInfo.patient.getSEX());
-            if (!"".equals(LoginInfo.patient.getBIRTHDAY())) {
-                mTextBorn.setText(LoginInfo.patient.getBIRTHDAY()
-                        .split(" ")[0]);
-            }
+//            if (!"".equals(LoginInfo.patient.getBIRTHDAY())) {
+//                mTextBorn.setText(LoginInfo.patient.getBIRTHDAY()
+//                        .split(" ")[0]);
+//            }
             mTextPre.setText("¥ " + LoginInfo.patient.getPRECOST());
             mTextBalance.setText("¥ " + LoginInfo.patient.getBALANCE());
             mTextWay.setText(LoginInfo.patient.getMEDICARETYPE());
